@@ -99,10 +99,14 @@ if [ -e "$HOME_LUA" ]; then
 	# patcht Hauptseite > Kasten Komfortfunktionen
 	homelua_disable_wrapper call_redirect  # Rufumleitung
 	homelua_disable_wrapper tam.*          # Anrufbeantworter (5.2x=tr_tam 5.50=tr_tamcalls)
-	homelua_disable IntFax_Display ''      # Facksimile
+   if [ ! "$FREETZ_AVM_VERSION_06_8X" = "y" ]; then
+   	homelua_disable IntFax_Display ''      # Facksimile
+   fi
 	homelua_disable_wrapper fonbook        # Telefonbuch
-	homelua_disable_wrapper foncalls       # Anrufliste
-	homelua_disable_wrapper internet_Sips  # Verbindungen (7570)
+   if [ ! "$FREETZ_AVM_VERSION_06_8X" = "y" ]; then
+   	homelua_disable_wrapper foncalls       # Anrufliste
+      homelua_disable_wrapper internet_Sips  # Verbindungen (7570)
+   fi
 
 	# patcht Hauptseite > Kasten Anrufe
 	modsed '/^{?537:759?}$/d' "$HOME_LUA"

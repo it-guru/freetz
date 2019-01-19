@@ -61,3 +61,9 @@ modsed \
 modsed \
   's/^http.redirect(get_goto_oldassi_href.*/go_home()/' \
   "${LUA_MOD_DIR}/first.lua"
+# prevent call of assistent, if there is no configuration done
+if [ "$FREETZ_AVM_VERSION_06_8X" = "y" ]; then
+   modsed \
+     's/return "internet_dsl"$/return "overview"/' \
+     "${LUA_MOD_DIR}/first.lua"
+fi

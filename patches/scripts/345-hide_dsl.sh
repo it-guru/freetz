@@ -11,15 +11,21 @@ rm_files \
 
 if [ -e "${HTML_LANG_MOD_DIR}/home/home.lua" ]; then
 	# patcht Hauptseite > Kasten Anschluesse > DSL
-	homelua_disable_wrapper connect_info_dsl
+   if [ ! "$FREETZ_AVM_VERSION_06_8X" = "y" ]; then
+   	homelua_disable_wrapper connect_info_dsl
+   fi
 	# patcht Internet > Online-Monitor > Online-Monitor
-	modsed \
-	  '/^box.out(connection.create_connection_row("inetmon"))$/d' \
-	  "${HTML_LANG_MOD_DIR}/internet/inetstat_monitor.lua"
+   if [ ! "$FREETZ_AVM_VERSION_06_8X" = "y" ]; then
+   	modsed \
+   	  '/^box.out(connection.create_connection_row("inetmon"))$/d' \
+   	  "${HTML_LANG_MOD_DIR}/internet/inetstat_monitor.lua"
+   fi
 	# patcht Internet > DSL-Informationen (lua)
-	modsed \
-	  's!not config.ATA or box.query("box:settings/ata_mode") ~= "1"!false!'\
-	  "${HTML_LANG_MOD_DIR}/menus/menu_show.lua"
+   if [ ! "$FREETZ_AVM_VERSION_06_8X" = "y" ]; then
+   	modsed \
+   	  's!not config.ATA or box.query("box:settings/ata_mode") ~= "1"!false!'\
+   	  "${HTML_LANG_MOD_DIR}/menus/menu_show.lua"
+   fi
 fi
 
 # patcht Internet > DSL-Informationen (html)

@@ -24,6 +24,7 @@ if [ "$FREETZ_REMOVE_MULTI_ANNEX_FIRMWARE_DIFFS" == "y" ]; then
 	  lib/modules/dsp_*/*-?-dsl.bin.md5sum \
 	  lib/modules/*Vx180Code.bin.bsdiff \
 	  lib/modules/*Vx180Code.bin.md5sum \
+#	  etc/init.d/rc.iksdsl.sh \
 	  usr/bin/bspatch \
 	  ; do
 		rm_files "${FILESYSTEM_MOD_DIR}/$files"
