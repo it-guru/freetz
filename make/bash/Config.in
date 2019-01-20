@@ -32,6 +32,13 @@ config FREETZ_PACKAGE_BASH_STATIC
 	help
 		Causes all libraries bash depends on to be linked in statically.
 
+config FREETZ_PACKAGE_BASH_RESTRICTED
+	bool "allow bash as restricted shell"
+	depends on FREETZ_PACKAGE_BASH
+	default n
+	help
+		allow call of bash -r (or link to rbash), to prevent directory change.
+
 config FREETZ_PATCH_BASH_LOGIN_SHELL
 	bool "add bash to the list of login shells"
 	depends on FREETZ_PACKAGE_BASH
