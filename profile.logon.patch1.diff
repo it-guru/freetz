@@ -1,0 +1,12 @@
+--- build/modified/filesystem/etc/profile.org	2019-01-20 17:10:10.931881850 +0100
++++ build/modified/filesystem/etc/profile	2019-01-20 17:09:55.663489969 +0100
+@@ -1,7 +1,9 @@
+ # /etc/profile
+ #
+ VERBOSE_RC_CONF=n
++if [ $(id -u) = 0 ]; then
+ . /etc/init.d/rc.conf
++fi
+ 
+ export PATH=/mod/sbin:/mod/bin:/mod/usr/sbin:/mod/usr/bin:/mod/etc/init.d:/sbin:/bin:/usr/sbin:/usr/bin
+ export LD_LIBRARY_PATH=/mod/lib:/mod/usr/lib
