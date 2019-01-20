@@ -1,0 +1,50 @@
+Das WLAN der 7390 funktioniert nur dann, wenn man nach einem
+"frischen" flashen (erase mtd3; erase mtd4 in der ADAM2 Shell) 
+min. das erst Mal Internet Zugang über LAN1 aktiv hat. Dann
+werden die WLAN Plugins von AVM nachgeladen.
+Zu beachten ist, das für diesen Vorgang tr096 nicht removed
+sein darf - sonst tut das nicht.
+
+Danach kann man die Box in den Repeaseter Modus stellen.
+
+Wichtige makes:
+===============
+
+make menuconfig  
+... is klar (damit iptables geht, muß Replace Kernel verwendet werden)
+
+make kernel-menuconifg
+... muss man verwenden, damit der Kernel auch korrekt gebaut
+wird (und man kann natürlich auch noch Anpassungen darin vornehmen)
+
+
+make push-firmware  
+... zum flashen der Firmware. Es muß auf einem Sekundär-Interface
+die ips ...
+sudo ifconfig eth3:1 192.168.188.200 netmask 255.255.255.0
+sudo ifconfig eth3:2 192.168.178.200 netmask 255.255.255.0
+... geladen sein - dann kann das eth3 selbst deaktiviert sein
+
+
+
+make FREETZ_FWMOD_SKIP_MODIFY=1 firmware-nocompile 
+... kann man verwenden, um die Firmware einfach neu zu
+packen (steht unter build/modified/filesystem)
+
+
+Normale User auf die Box hinzufügen:
+adduser -h /var/media/ftp/home/username -s /var/media/ftp/bin/gateShell -D username 
+In der /etc/shadow das Passwort Feld x-en.
+modsave all
+
+Alles unter /var/media/ftp ist reboot und flashfest
+
+
+Typischerweise läuft ein Build-Zyklus dann bei mir so ab:
+
+make menuconfig
+make
+patch -p0 < profile.logon.patch1.diff
+make FREETZ_FWMOD_SKIP_MODIFY=1 firmware-nocompile 
+make push-firmware
+
