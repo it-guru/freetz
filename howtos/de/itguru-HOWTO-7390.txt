@@ -7,6 +7,10 @@ sein darf - sonst tut das nicht.
 
 Danach kann man die Box in den Repeaseter Modus stellen.
 
+OpenWRT tut nicht auf der 7390 - die Hardware-Infos unter ...
+https://openwrt.org/toh/avm/fritz.box.wlan.7390
+... sind aber hilfreich.
+
 Wichtige makes:
 ===============
 
