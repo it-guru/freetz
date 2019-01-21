@@ -1,6 +1,8 @@
 #!/bin/sh
 echo "$(date) Startup" > /tmp/f2b
 
+mkdir -p /var/run/fail2ban
+
 ps >> /tmp/f2b
 sleep 10
 echo "$(date) Startup" >> /tmp/f2b
