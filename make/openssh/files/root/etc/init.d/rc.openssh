@@ -7,6 +7,10 @@ DAEMON_BIN=sshd
 
 CONFFILE=/mod/etc/openssh.conf
 
+if [ -f /var/tmp/flash/openssh/openssh.conf ]; then
+   CONFFILE=/var/tmp/flash/openssh/openssh.conf
+fi
+
 [ -r /etc/options.cfg ] && . /etc/options.cfg
 
 kex_algorithms() {
