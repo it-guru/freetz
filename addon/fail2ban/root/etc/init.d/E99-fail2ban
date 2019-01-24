@@ -4,13 +4,15 @@ echo "$(date) Startup" > /tmp/f2b
 mkdir -p /var/run/fail2ban
 
 ps >> /tmp/f2b
-sleep 10
 echo "$(date) Startup" >> /tmp/f2b
 ps >> /tmp/f2b
 
 logger "starting fail2ban"
 
 export PYTHONPATH=/usr/lib/python2.7/site-packages/lib
+fail2ban-client stop 2>&1 > /dev/null
+sleep 3
+rm /var/run/fail2ban/* 2>/dev/null
 fail2ban-client start  >> /tmp/f2b 2>&1
 
 echo "$(date) End" >> /tmp/f2b
