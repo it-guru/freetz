@@ -18,8 +18,7 @@ $(PKG)_CONFIGURE_OPTIONS += --without-lecture \
 			    --without-sendmail \
 			    --disable-pam-session \
 			    --disable-root-mailer \
-			    --disable-root-sudo \
-			    --sysconfdir=/mod/etc \
+			    --sysconfdir=/tmp/flash/sudo \
 			    --disable-zlib
 
 $(PKG)_CONFIGURE_ENV += sudo_cv_uid_t_len=10
