@@ -42,11 +42,11 @@ $(PKG)_CONFIGURE_ENV += bash_cv_wcontinued_broken=no
 # actually yes but it's safe to say no
 $(PKG)_CONFIGURE_ENV += gt_cv_int_divbyzero_sigfpe=no
 
-$(PKG)_CONFIGURE_OPTIONS += --disable-restricted
 $(PKG)_CONFIGURE_OPTIONS += --without-bash-malloc
 $(PKG)_CONFIGURE_OPTIONS += $(if $(FREETZ_PACKAGE_BASH_MINIMAL),--enable-minimal-config)
 $(PKG)_CONFIGURE_OPTIONS += $(if $(FREETZ_PACKAGE_BASH_READLINE),,--disable-readline)
 $(PKG)_CONFIGURE_OPTIONS += $(if $(FREETZ_PACKAGE_BASH_RESTRICTED),,--enable-restricted)
+$(PKG)_CONFIGURE_OPTIONS += $(if ! $(FREETZ_PACKAGE_BASH_RESTRICTED),,--disable-restricted)
 $(PKG)_CONFIGURE_OPTIONS += $(if $(FREETZ_PACKAGE_BASH_READLINE),,--disable-history)
 $(PKG)_CONFIGURE_OPTIONS += $(if $(FREETZ_PACKAGE_BASH_READLINE),,--disable-bang-history)
 $(PKG)_CONFIGURE_OPTIONS += $(if $(FREETZ_PACKAGE_BASH_READLINE),--with-installed-readline)
