@@ -4,7 +4,7 @@
  # /etc/profile
  #
  VERBOSE_RC_CONF=n
-+if [ $(id -u) = 0 ]; then
++if [ $(id -u) = 0 -a -z "$SUDO_UID" ]; then
  . /etc/init.d/rc.conf
 +fi
  
